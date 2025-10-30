@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社セラグ - 採用情報</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: #2563eb;
+        }
+        
+        .hero {
+            height: 100vh;
+            background-image: url('https://page.gensparksite.com/v1/base64_upload/f0a26b8010e67a590cb758d4d93578b1');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .about-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .about-image {
+            flex: 0 0 45%;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-item {
+            margin-bottom: 2rem;
+        }
+        
+        .about-item h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .business-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .business-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .training-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        
+        .tab-button.data-entry {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+        
+        .tab-button.data-entry.active {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .tab-button.development {
+            border-color: #10b981;
+            color: #10b981;
+        }
+        
+        .tab-button.development.active {
+            background: #10b981;
+            color: white;
+        }
+        
+        .tab-button.data-scientist {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+        
+        .tab-button.data-scientist.active {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .tab-button.webdesigner {
+            border-color: #f97316;
+            color: #f97316;
+        }
+        
+        .tab-button.webdesigner.active {
+            background: #f97316;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .voices-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .voice-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: flex-start;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .voice-photo {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        
+        .voice-content h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .voice-role {
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        
+        .voice-date {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .company-info {
+            background: #f9fafb;
+            padding: 3rem 0;
+        }
+        
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .company-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .company-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2563eb;
+            font-size: 0.9rem;
+        }
+        
+        .company-item span {
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .voice-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .voice-photo {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto;
+            }
+            
+            .training-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">株式会社セラグ</div>
+            <ul class="nav-menu">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#about">セラグについて</a></li>
+                <li><a href="#business">業務内容</a></li>
+                <li><a href="#training">研修プログラム</a></li>
+                <li><a href="#voices">社員の声</a></li>
+                <li><a href="#company">会社概要</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>株式会社セラグ</h1>
+            <h2>社員1人1人が成長できる環境</h2>
+            <p>多様な才能が交わり、無限の可能性を創造できる場所へ。挑戦と成長を支える環境を通じて、社員が自分らしく輝ける企業を目指します。</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">セラグが大切にしていること</h2>
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/7680a5da74a76327acf0b3cf51eae51c" alt="チーム写真">
+                </div>
+                <div class="about-content">
+                    <div class="about-item">
+                        <h3>充実したサポート体制</h3>
+                        <p>経験豊富なメンターが一人ひとりの成長を丁寧にサポート。初心者でも安心してスタートできる環境を整えています。</p>
+                    </div>
+                    <div class="about-item">
+                        <h3>風通しの良いコミュニケーション</h3>
+                        <p>オープンで率直な意見交換ができる職場環境。チーム一丸となって目標に向かって取り組める雰囲気があります。</p>
+                    </div>
+                    <div class="about-item">
+                        <h3>ワークライフバランス</h3>
+                        <p>年間休日126日、月平均残業時間約10時間。プライベートも大切にしながら、充実した職業人生を送れます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Content Section -->
+    <section id="business" class="section bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">業務内容</h2>
+            <div class="business-grid">
+                <div class="business-card">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600">データ分析・データ事務</h3>
+                    <p>データの収集、整理、分析を行い、ビジネスの意思決定をサポート。ExcelやPythonを使った業務効率化を推進します。</p>
+                </div>
+                <div class="business-card">
+                    <h3 class="text-xl font-bold mb-4 text-green-600">ソフトウェア開発</h3>
+                    <p>Webアプリケーション、業務システムの設計・開発。Java、Python、PHP、JavaScriptなどを使用した多様な開発を行います。</p>
+                </div>
+                <div class="business-card">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600">データサイエンティスト</h3>
+                    <p>機械学習、統計分析を活用したデータ解析。ビッグデータから価値ある知見を導き出し、ビジネスに活用します。</p>
+                </div>
+                <div class="business-card">
+                    <h3 class="text-xl font-bold mb-4 text-orange-600">Webデザイナー</h3>
+                    <p>ユーザー体験を重視したWebサイト・Webアプリケーションのデザイン。UI/UXデザイン、レスポンシブデザインの設計と実装を行います。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Program Section -->
+    <section id="training" class="section">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">研修プログラム</h2>
+            <div class="training-tabs">
+                <button class="tab-button data-entry active" onclick="showTab('data-entry')">データ事務</button>
+                <button class="tab-button development" onclick="showTab('development')">開発</button>
+                <button class="tab-button data-scientist" onclick="showTab('data-scientist')">データサイエンティスト</button>
+                <button class="tab-button webdesigner" onclick="showTab('webdesigner')">Webデザイナー</button>
+            </div>
+            
+            <div id="data-entry" class="tab-content active">
+                <h3 class="text-2xl font-bold mb-6">データ事務研修プログラム（3ヶ月間）</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">1ヶ月目：基礎スキル</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>パソコンの基本操作</li>
+                            <li>Excel基礎・応用</li>
+                            <li>データ入力・整理の基本</li>
+                            <li>ビジネスマナー</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">2ヶ月目：分析スキル</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>データ分析の基礎</li>
+                            <li>統計の基本概念</li>
+                            <li>グラフ・チャート作成</li>
+                            <li>レポート作成技術</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">3ヶ月目：実践スキル</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>Python基礎</li>
+                            <li>データベースの基本</li>
+                            <li>実際の業務データを使った演習</li>
+                            <li>プレゼンテーション技術</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="development" class="tab-content">
+                <h3 class="text-2xl font-bold mb-6">開発研修プログラム（3ヶ月間）</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">1ヶ月目：基礎スキル</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>プログラミングの基本概念</li>
+                            <li>開発環境の構築</li>
+                            <li>Git/GitHubの基本</li>
+                            <li>システム設計の基礎</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">2ヶ月目：プログラミング基礎</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>Java基礎・オブジェクト指向</li>
+                            <li>Python基礎・ライブラリ活用</li>
+                            <li>HTML/CSS基礎</li>
+                            <li>PHP基礎・データベース連携</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">3ヶ月目：実装・開発実践</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>Webアプリケーション開発</li>
+                            <li>データベース設計・実装</li>
+                            <li>テスト・デバッグ技術</li>
+                            <li>チーム開発の実践</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="data-scientist" class="tab-content">
+                <h3 class="text-2xl font-bold mb-6">データサイエンティスト研修プログラム（3ヶ月間）</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">1ヶ月目：基礎スキル</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>数学・統計学の基礎</li>
+                            <li>Python基礎・データ処理</li>
+                            <li>データサイエンスの概要</li>
+                            <li>業界動向・ビジネス理解</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">2ヶ月目：データ分析・機械学習基礎</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>データ可視化・探索的分析</li>
+                            <li>機械学習アルゴリズムの理解</li>
+                            <li>scikit-learn・pandas活用</li>
+                            <li>統計的仮説検定</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">3ヶ月目：実践的分析・モデル構築</h4>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li>実データを使ったプロジェクト</li>
+                            <li>予測モデルの構築・評価</li>
+                            <li>ビジネス課題解決への応用</li>
+                            <li>成果発表・レポート作成</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="webdesigner" class="tab-content">
+                <h3 class="text-2xl font-bold mb-6">Webデザイナー研修プログラム（4ヶ月間）</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">1ヶ月目：ITの基礎から丁寧にスタート</h4>
+                        <p class="font-semibold mb-2">▶▶▶ まずは「ITの基礎」を学ぶことから開始。Excelの使い方などもイチから教えます。</p>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li><strong>パソコンの基本操作</strong>：ファイル管理、フォルダ構造、ショートカットキーなど、効率的な作業の基礎を習得</li>
+                            <li><strong>Excelの使い方</strong>：データ入力、表作成、基本的な関数（SUM、AVERAGE、IF）をイチから丁寧に指導</li>
+                            <li><strong>インターネットの仕組み</strong>：Webの基本構造、ドメイン、サーバーの概念を理解</li>
+                            <li><strong>ビジネスツールの活用</strong>：メール、チャット、ビデオ会議ツールの使い方を学習</li>
+                            <li><strong>デザインの基本原則</strong>：レイアウト、配色、タイポグラフィの基礎理論を学ぶ</li>
+                            <li><strong>デザインツール入門</strong>：Adobe XDやFigmaの基本操作を体験</li>
+                            <li><strong>ワイヤーフレーム作成</strong>：Webサイトの設計図を作る基本的な演習</li>
+                        </ul>
+                        <p class="mt-2 text-sm text-gray-600">未経験者でも安心してスタートできるよう、基礎の基礎から段階的に学んでいきます。</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">2ヶ月目：Web技術の基礎知識を習得</h4>
+                        <p class="font-semibold mb-2">▶▶▶ Webデザイナーに必要な「PHP・HTML・CSS・JavaScript」などの基礎知識を習得します。</p>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li><strong>HTML基礎</strong>：Webページの構造を作る基本タグ（見出し、段落、リスト、リンク、画像）の使い方を学習</li>
+                            <li><strong>CSS基礎</strong>：デザインとスタイリングの基本（色、フォント、レイアウト、ボックスモデル）を習得</li>
+                            <li><strong>レスポンシブデザイン</strong>：スマートフォン、タブレット、PCに対応するデザイン手法を学ぶ</li>
+                            <li><strong>JavaScript基礎</strong>：Webサイトに動きをつける基本的なプログラミングを体験</li>
+                            <li><strong>PHP基礎</strong>：動的なWebサイトを作るためのサーバーサイド言語の入門</li>
+                            <li><strong>UI/UXデザインの実践</strong>：ユーザーが使いやすいインターフェースの設計方法を学習</li>
+                            <li><strong>模写演習</strong>：実在するWebサイトを模写して、実装力を養成</li>
+                            <li><strong>デザインツールとコーディングの連携</strong>：Figmaで作ったデザインをHTMLとCSSで再現</li>
+                        </ul>
+                        <p class="mt-2 text-sm text-gray-600">段階的に技術を積み上げ、Webデザイナーに必要な知識を確実に身につけます。</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">3ヶ月目：実装研修で実践力を磨く</h4>
+                        <p class="font-semibold mb-2">▶▶▶ 実装研修に挑戦。実際に手を動かして、Webデザインを体験します。</p>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li><strong>実装研修スタート</strong>：学んだ知識を使って、実際にWebサイトを制作</li>
+                            <li><strong>プロジェクト課題</strong>：架空のクライアント向けにWebサイトをゼロから企画・デザイン</li>
+                            <li><strong>デザインカンプ作成</strong>：Adobe XDやFigmaで完成形のデザインを作り上げる</li>
+                            <li><strong>コーディング実践</strong>：デザインカンプをもとに、HTML/CSS/JavaScriptで実装</li>
+                            <li><strong>ユーザビリティテスト</strong>：作成したサイトの使いやすさを検証し、改善点を発見</li>
+                            <li><strong>デザインレビュー</strong>：先輩社員からフィードバックを受け、デザインの質を向上</li>
+                            <li><strong>ポートフォリオ制作開始</strong>：自分の作品をまとめたWebサイトの制作に着手</li>
+                            <li><strong>実案件の見学</strong>：実際のクライアントプロジェクトの進行を間近で学ぶ</li>
+                        </ul>
+                        <p class="mt-2 text-sm text-gray-600">手を動かしながら実践的なスキルを習得し、即戦力としての基礎を固めます。</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-2">4ヶ月目以降：実案件でスキルアップ</h4>
+                        <p class="font-semibold mb-2">▶▶▶ スキルに応じて、案件をお任せしていく予定。複数案件を担当する可能性もあります。</p>
+                        <ul class="list-disc pl-6 space-y-1">
+                            <li><strong>実案件デビュー</strong>：習得したスキルに応じて、実際のクライアント案件を担当</li>
+                            <li><strong>先輩社員のサポート付き</strong>：最初は先輩がサポートに入り、安心して業務を進められます</li>
+                            <li><strong>段階的な業務拡大</strong>：経験を積むごとに、徐々に担当範囲を広げていきます</li>
+                            <li><strong>複数案件の並行進行</strong>：スキルアップに応じて、複数のプロジェクトを同時に担当</li>
+                            <li><strong>クライアントとの打ち合わせ参加</strong>：要望ヒアリング、提案プレゼンなど、実践的なコミュニケーションを経験</li>
+                            <li><strong>デザインの幅を広げる</strong>：バナー制作、ランディングページ、ECサイトなど、多様なデザイン案件に挑戦</li>
+                            <li><strong>継続的な学習機会</strong>：新しいデザイントレンドや技術を学ぶ社内勉強会に参加</li>
+                            <li><strong>キャリアパスの相談</strong>：定期的な面談で、今後のキャリアについて相談できます</li>
+                        </ul>
+                        <p class="mt-2 text-sm text-gray-600">実務経験を通じて、プロのWebデザイナーとして成長していきます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employee Voices Section -->
+    <section id="voices" class="section bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">社員の声</h2>
+            <div class="voices-container">
+                <div class="voice-item">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/0498c6f9599048d681a8967386723c29" alt="I・O さん" class="voice-photo">
+                    <div class="voice-content">
+                        <h3>I・O さん</h3>
+                        <p class="voice-role">データサイエンティスト（27歳・男性）</p>
+                        <p class="voice-date">2025年3月入社</p>
+                        <p>「データサイエンティストとして、最先端の技術に触れながら成長できる環境に魅力を感じています。未経験からのスタートでしたが、充実した研修プログラムと先輩社員のサポートのおかげで、自信を持って業務に取り組めるようになりました。」</p>
+                    </div>
+                </div>
+                
+                <div class="voice-item">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/f5c4e450c0565a0fb10a721492345734" alt="O・S さん" class="voice-photo">
+                    <div class="voice-content">
+                        <h3>O・S さん</h3>
+                        <p class="voice-role">データ事務（24歳・女性）</p>
+                        <p class="voice-date">2023年7月入社</p>
+                        <p>「入社前はITの知識がほとんどありませんでしたが、基礎から丁寧に教えていただき、今では自信を持って業務に取り組んでいます。困ったときにすぐに相談できる環境があり、安心して働けています。」</p>
+                    </div>
+                </div>
+                
+                <div class="voice-item">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/b130532dc6813ad6ddabd62999b036c6" alt="A・T さん" class="voice-photo">
+                    <div class="voice-content">
+                        <h3>A・T さん</h3>
+                        <p class="voice-role">開発（31歳・男性）</p>
+                        <p class="voice-date">2024年5月入社</p>
+                        <p>「前職とは異なる業界への転職でしたが、研修制度が充実しており、スムーズにキャッチアップできました。チームメンバーとのコミュニケーションも活発で、毎日刺激を受けながら働いています。」</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview Section -->
+    <section id="company" class="company-info">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold text-center mb-8">会社概要</h2>
+            <div class="company-grid">
+                <div class="company-item">
+                    <strong>会社名</strong>
+                    <span>株式会社セラグ</span>
+                </div>
+                <div class="company-item">
+                    <strong>設立</strong>
+                    <span>2023年9月25日</span>
+                </div>
+                <div class="company-item">
+                    <strong>資本金</strong>
+                    <span>300万円</span>
+                </div>
+                <div class="company-item">
+                    <strong>所在地</strong>
+                    <span>〒108-0075<br>東京都港区港南2-16-1<br>品川イーストワンタワー7F</span>
+                </div>
+                <div class="company-item">
+                    <strong>事業内容</strong>
+                    <span>ソフトウェア開発<br>Webデザイン<br>クラウドコンピューティングサービス<br>データ分析</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 株式会社セラグ. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            const activeButton = document.querySelector(`.tab-button.${tabName}`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDp41IntZ6ibpEys71Nzjns3sRiA8d5odoV1%2BjG8RjfSuoYYIs7o6WZD6Ra%2Fay3M%2FkHSn9S9Eupswo8np5VQPoDgGZdyYyeREOdRDWsfoUUXJOGq2%2FT4gv4WPj%2FiOlVJXERvSbPhTxMY1rFXbkGw6DkVm%2FfH48Dk3zEFp6XDu3HZ8fD64uHvRcSAgI2LiMCyNLP1qE3Ws81zJvfEauI8OCsYCnKLvI%2BjSrsOPS2wXUr86rNzScS35T6gAny51TAjlzTNXlKYOlmhd9KNxBjIdb63illYY6bK6TZXQBqTDI1b%2B6aVHaEl0HDOU7tawlhd4xZ2%2FKE%2FiRCtv4K9B%2Bj%2FsasoX2oTCCMe8RDeLKqOuNJB%2FHnh2gPsR0q5l%2Fxko0DfCDHYp6WyM0LMsr%2Bjclp4OK2G6rXeaaDWoIT5De1f7snRQLlUTvYsrTd8TAXc79mTVWmgxDVlRFul0raGhQQrSTT4AEWJIYv%2BFOjN3JK0Zi8u%2FPO7DfMyxvbPq6NxuqCpwrYQaS8ejUA%2B1CNyREwq26Z0%3D";
+        window.__genspark_locale = "ja-JP";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDp41IntZ6ibpEys71Nzjns3sRiA8d5odoV1+jG8RjfSuoYYIs7o6WZD6Ra/ay3M/kHSn9S9Eupswo8np5VQPoDgGZdyYyeREOdRDWsfoUUXJOGq2/T4gv4WPj/iOlVJXERvSbPhTxMY1rFXbkGw6DkVm/fH48Dk3zEFp6XDu3HZ8fD64uHvRcSAgI2LiMCyNLP1qE3Ws81zJvfEauI8OCsYCnKLvI+jSrsOPS2wXUr86rNzScS35T6gAny51TAjlzTNXlKYOlmhd9KNxBjIdb63illYY6bK6TZXQBqTDI1b+6aVHaEl0HDOU7tawlhd4xZ2/KE/iRCtv4K9B+j/sasoX2oTCCMe8RDeLKqOuNJB/Hnh2gPsR0q5l/xko0DfCDHYp6WyM0LMsr+jclp4OK2G6rXeaaDWoIT5De1f7snRQLlUTvYsrTd8TAXc79mTVWmgxDVlRFul0raGhQQrSTT4AEWJIYv+FOjN3JK0Zi8u/PO7DfMyxvbPq6NxuqCpwrYQaS8ejUA+1CNyREwq26Z0=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
